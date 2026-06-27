@@ -27,10 +27,10 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: NODE_ENV=development npm install
 
       - name: Build frontend
-        run: GH_PAGES=true ./node_modules/.bin/vite build
+        run: GH_PAGES=true npm run build:frontend
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
