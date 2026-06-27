@@ -19,20 +19,44 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+// Check if we're on a static host without API (GitHub Pages)
+const isStaticHost = typeof window !== "undefined" && 
+  (window.location.hostname.includes("github.io") || 
+   window.location.hostname === "unifiedfarmblm.com");
+
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: "/api/trpc",
+      url: isStaticHost ? "" : "/api/trpc",
       transformer: superjson,
       headers() {
         const token = localStorage.getItem("local_auth_token");
         return token ? { "x-local-auth-token": token } : {};
       },
       fetch(input, init) {
+        if (isStaticHost) {
+          // Return empty tRPC response for static hosts
+          return Promise.resolve(
+            new Response(
+              JSON.stringify([
+                { result: { data: { json: null } } }
+              ]),
+              { status: 200, headers: { "content-type": "application/json" } }
+            )
+          );
+        }
         return globalThis.fetch(input, {
           ...(init ?? {}),
           credentials: "include",
-        }).catch(() => new Response('{"error":{"message":"API unavailable"}}', { status: 503 }));
+        }).catch(() => 
+          new Response(
+            JSON.stringify([
+              { result: { data: { json: null } } }
+            ]),
+            { status: 200, headers: { "content-type": "application/json" } }
+          )
+        );
       },
     }),
   ],
