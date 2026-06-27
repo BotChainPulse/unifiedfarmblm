@@ -27,7 +27,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: NODE_ENV=development npm install
+        run: npm ci
 
       - name: Build frontend
         run: GH_PAGES=true npm run build:frontend
