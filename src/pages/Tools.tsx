@@ -3,9 +3,9 @@ import { Egg, Scale, TrendingUp } from 'lucide-react'
 
 /* ─── Feed Calculator ─── */
 function FeedCalculator() {
-  const [birdCount, setBirdCount] = useState(100)
+  const [birdCount, setBirdCount] = useState(0)
   const [age, setAge] = useState<'chick' | 'grower' | 'layer'>('layer')
-  const [days, setDays] = useState(30)
+  const [days, setDays] = useState(0)
 
   const feedRates = { chick: 0.05, grower: 0.08, layer: 0.12 }
   const totalFeed = birdCount * feedRates[age] * days
@@ -24,7 +24,7 @@ function FeedCalculator() {
       <div className="space-y-4">
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Number of Birds</label>
-          <input type="number" min={1} value={birdCount} onChange={(e) => setBirdCount(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
+          <input type="number" min={0} value={birdCount} onChange={(e) => setBirdCount(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
         </div>
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Bird Stage</label>
@@ -36,7 +36,7 @@ function FeedCalculator() {
         </div>
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Duration (days)</label>
-          <input type="number" min={1} value={days} onChange={(e) => setDays(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
+          <input type="number" min={0} value={days} onChange={(e) => setDays(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
         </div>
         <div className="p-4 rounded-xl space-y-2" style={{ background: 'var(--bg-alt)' }}>
           <div className="flex justify-between font-sora text-sm">
@@ -59,9 +59,9 @@ function FeedCalculator() {
 
 /* ─── Egg Production Calculator ─── */
 function EggCalculator() {
-  const [hens, setHens] = useState(100)
-  const [layingRate, setLayingRate] = useState(85)
-  const [eggPrice, setEggPrice] = useState(500)
+  const [hens, setHens] = useState(0)
+  const [layingRate, setLayingRate] = useState(0)
+  const [eggPrice, setEggPrice] = useState(0)
 
   const dailyEggs = Math.round(hens * (layingRate / 100))
   const weeklyEggs = dailyEggs * 7
@@ -81,7 +81,7 @@ function EggCalculator() {
       <div className="space-y-4">
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Number of Laying Hens</label>
-          <input type="number" min={1} value={hens} onChange={(e) => setHens(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
+          <input type="number" min={0} value={hens} onChange={(e) => setHens(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
         </div>
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Laying Rate (%)</label>
@@ -89,7 +89,7 @@ function EggCalculator() {
         </div>
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Price per Egg (UGX)</label>
-          <input type="number" min={1} value={eggPrice} onChange={(e) => setEggPrice(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
+          <input type="number" min={0} value={eggPrice} onChange={(e) => setEggPrice(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
         </div>
         <div className="p-4 rounded-xl space-y-2" style={{ background: 'var(--bg-alt)' }}>
           <div className="flex justify-between font-sora text-sm">
@@ -116,10 +116,10 @@ function EggCalculator() {
 
 /* ─── Profit Calculator ─── */
 function ProfitCalculator() {
-  const [hens, setHens] = useState(100)
-  const [feedCost, setFeedCost] = useState(150000)
-  const [otherCosts, setOtherCosts] = useState(50000)
-  const [monthlyRevenue, setMonthlyRevenue] = useState(300000)
+  const [hens, setHens] = useState(0)
+  const [feedCost, setFeedCost] = useState(0)
+  const [otherCosts, setOtherCosts] = useState(0)
+  const [monthlyRevenue, setMonthlyRevenue] = useState(0)
 
   const totalCosts = feedCost + otherCosts
   const profit = monthlyRevenue - totalCosts
@@ -137,7 +137,7 @@ function ProfitCalculator() {
       <div className="space-y-4">
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Number of Birds</label>
-          <input type="number" min={1} value={hens} onChange={(e) => setHens(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
+          <input type="number" min={0} value={hens} onChange={(e) => setHens(Number(e.target.value))} className="w-full px-4 py-3 rounded-xl font-sora text-sm outline-none" style={{ background: 'var(--bg)', color: 'var(--text-main)' }} />
         </div>
         <div>
           <label className="font-sora text-xs uppercase tracking-wider mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Monthly Feed Cost (UGX)</label>
