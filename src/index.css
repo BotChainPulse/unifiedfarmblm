@@ -1,75 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    --primary: #D4A373;
+    --primary-hover: #C49363;
+    --secondary: #606C38;
+    --secondary-hover: #4E5A2E;
+    --accent: #BC6C25;
+    --bg: #FEFAE0;
+    --bg-alt: #E9EDC9;
+    --surface: #FFFFFF;
+    --text-main: #283618;
+    --text-muted: #8B7E66;
+    --text-inverted: #FEFAE0;
+    --border: rgba(188, 108, 37, 0.15);
+    --section-pad-y: 100px;
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 20 14.3% 4.1%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary-hsl: 28 47% 64%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary-hsl: 74 31% 33%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent-hsl: 28 66% 44%;
+    --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border-hsl: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 28 47% 64%;
     --radius: 0.625rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  * {
+    border-color: hsl(var(--border-hsl));
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: 'Instrument Serif', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Instrument Serif', serif;
+    color: var(--text-main);
+  }
+
+  .font-sora {
+    font-family: 'Sora', sans-serif;
+  }
+
+  .font-serif {
+    font-family: 'Instrument Serif', serif;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-sora font-medium text-[13px] tracking-[0.06em] uppercase transition-all duration-300;
+    background-color: var(--primary);
+    color: var(--text-inverted);
   }
-  body {
-    @apply bg-background text-foreground;
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 163, 115, 0.35);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-sora font-medium text-[13px] tracking-[0.06em] uppercase transition-all duration-300 border;
+    border-color: var(--secondary);
+    color: var(--secondary);
+    background: transparent;
+  }
+  .btn-secondary:hover {
+    background-color: var(--secondary);
+    color: var(--text-inverted);
+    transform: translateY(-2px);
+  }
+
+  .section-pad {
+    padding-top: var(--section-pad-y);
+    padding-bottom: var(--section-pad-y);
+  }
+
+  .eyebrow {
+    @apply font-sora font-normal uppercase tracking-[0.08em];
+    font-size: 11px;
+    color: var(--accent);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Leaflet map styles */
+.leaflet-container {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+/* Animation classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tilt card styles */
+.tilt-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 24px rgba(40, 54, 24, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+.tilt-card:hover {
+  box-shadow: 0 8px 32px rgba(40, 54, 24, 0.12);
+}
+.tilt-card__inner {
+  transform: translateZ(20px);
+}
+.tilt-card__image {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 16px;
+}
+.tilt-card__title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  color: var(--text-main);
+  margin: 0 0 8px;
+}
+.tilt-card__description {
+  font-family: 'Instrument Serif', serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.tilt-card__price {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Chat widget styles */
+.chat-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+}
+.chat-panel {
+  width: 380px;
+  height: 520px;
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(40, 54, 24, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .chat-panel {
+    width: calc(100vw - 32px);
+    height: 70vh;
   }
 }
