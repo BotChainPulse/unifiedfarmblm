@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Build frontend
-        run: GH_PAGES=true npx vite build
+        run: GH_PAGES=true ./node_modules/.bin/vite build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
