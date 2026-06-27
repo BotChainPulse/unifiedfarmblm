@@ -3,9 +3,9 @@ import { Egg, Scale, TrendingUp } from 'lucide-react'
 
 /* ─── Feed Calculator ─── */
 function FeedCalculator() {
-  const [birdCount, setBirdCount] = useState(0)
+  const [birdCount, setBirdCount] = useState(10)
   const [age, setAge] = useState<'chick' | 'grower' | 'layer'>('layer')
-  const [days, setDays] = useState(0)
+  const [days, setDays] = useState(30)
 
   const feedRates = { chick: 0.05, grower: 0.08, layer: 0.12 }
   const totalFeed = birdCount * feedRates[age] * days
@@ -59,9 +59,9 @@ function FeedCalculator() {
 
 /* ─── Egg Production Calculator ─── */
 function EggCalculator() {
-  const [hens, setHens] = useState(0)
-  const [layingRate, setLayingRate] = useState(0)
-  const [eggPrice, setEggPrice] = useState(0)
+  const [hens, setHens] = useState(10)
+  const [layingRate, setLayingRate] = useState(85)
+  const [eggPrice, setEggPrice] = useState(500)
 
   const dailyEggs = Math.round(hens * (layingRate / 100))
   const weeklyEggs = dailyEggs * 7
@@ -116,10 +116,10 @@ function EggCalculator() {
 
 /* ─── Profit Calculator ─── */
 function ProfitCalculator() {
-  const [hens, setHens] = useState(0)
-  const [feedCost, setFeedCost] = useState(0)
-  const [otherCosts, setOtherCosts] = useState(0)
-  const [monthlyRevenue, setMonthlyRevenue] = useState(0)
+  const [hens, setHens] = useState(10)
+  const [feedCost, setFeedCost] = useState(50000)
+  const [otherCosts, setOtherCosts] = useState(20000)
+  const [monthlyRevenue, setMonthlyRevenue] = useState(100000)
 
   const totalCosts = feedCost + otherCosts
   const profit = monthlyRevenue - totalCosts

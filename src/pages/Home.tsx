@@ -178,8 +178,16 @@ function HeroSection() {
           backgroundImage: 'url(/images/hero-farm.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: 0.15,
+          opacity: 0.12,
           zIndex: 0,
+        }}
+      />
+      {/* Mobile readability overlay */}
+      <div
+        className="absolute inset-0 sm:hidden"
+        style={{
+          background: 'linear-gradient(135deg, rgba(254,250,224,0.88) 0%, rgba(254,250,224,0.65) 50%, rgba(254,250,224,0.2) 100%)',
+          zIndex: 1,
         }}
       />
       {/* Content */}
@@ -187,16 +195,16 @@ function HeroSection() {
         className="relative z-10 flex flex-col justify-center h-full px-6 sm:px-10 lg:px-20"
         style={{ maxWidth: 620 }}
       >
-        <span className="eyebrow mb-4" style={{ color: 'var(--secondary)' }}>
+        <span className="eyebrow mb-4" style={{ color: 'var(--secondary)', textShadow: '0 1px 3px rgba(254,250,224,0.9), 0 0 8px rgba(254,250,224,0.7)' }}>
           Family-Run Poultry Farm in Mpigi, Uganda
         </span>
         <h1
           className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-5"
-          style={{ color: 'var(--text-main)', letterSpacing: '-0.03em' }}
+          style={{ color: 'var(--text-main)', letterSpacing: '-0.03em', textShadow: '0 2px 8px rgba(254,250,224,0.9), 0 0 20px rgba(254,250,224,0.6)' }}
         >
           Fresh From Our Farm to Your Table
         </h1>
-        <p className="font-serif text-base lg:text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-muted)', maxWidth: 440 }}>
+        <p className="font-serif text-base lg:text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-muted)', maxWidth: 440, textShadow: '0 1px 4px rgba(254,250,224,0.9)' }}>
           Premium poultry products from Mpigi, Uganda. We raise healthy chickens, produce fresh organic eggs, and supply quality day-old chicks to farmers across the region.
         </p>
         <div className="flex flex-wrap gap-3">
@@ -267,7 +275,7 @@ function WelcomeSection() {
 const products = [
   { name: 'Fresh Organic Eggs', desc: 'Farm-fresh brown eggs collected daily from free-range layers. Rich in nutrients and flavor.', price: 'UGX 15,000 / tray', image: '/images/product-eggs.jpg' },
   { name: 'Day-Old Chicks', desc: 'Vaccinated and healthy broiler and layer chicks ready for your farm.', price: 'UGX 3,500 each', image: '/images/product-chicks.jpg' },
-  { name: 'Brooded Chicks (1 Month)', desc: 'One-month-old chicks raised under optimal conditions. Strong and ready to grow.', price: 'UGX 8,000 each', image: '/images/product-brooded.jpg' },
+  { name: 'Brooded Chicks (1 Month)', desc: 'One-month-old chicks raised under optimal conditions. Strong and ready to grow.', price: 'UGX 12,000 each', image: '/images/product-brooded.jpg' },
   { name: 'Mature Layers', desc: 'Healthy point-of-lay hens vaccinated and prepared for immediate egg production.', price: 'UGX 35,000 each', image: '/images/product-layers.jpg' },
   { name: 'Organic Chicken Manure', desc: 'Natural fertilizer for your crops. Rich in nitrogen, phosphorus, and potassium.', price: 'UGX 50,000 / ton', image: '/images/product-manure.jpg' },
   { name: 'Farm Consultation', desc: 'Expert advice on poultry housing, feeding, disease prevention, and business planning.', price: 'Contact for rates', image: '/images/product-consultation.jpg' },
