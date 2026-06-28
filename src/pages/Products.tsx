@@ -1,6 +1,6 @@
 import { ArrowRight, Phone } from 'lucide-react'
 import { useState } from 'react'
-import { trpc } from '@/providers/trpc'
+import { trpc, isStaticHost } from '@/providers/trpc'
 import { toast } from 'sonner'
 
 const products = [
@@ -28,12 +28,32 @@ export default function Products() {
       setOrderProduct(null)
       setOrderForm({ customerName: '', customerEmail: '', customerPhone: '', quantity: 1, notes: '' })
     },
-    onError: (err) => toast.error(err.message),
+    onError: (err) => {
+      if (isStaticHost) {
+        // Already handled by static host fallback — don't show error
+        return
+      }
+      toast.error(err.message)
+    },
   })
 
   const handleOrderSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!orderProduct) return
+
+    // On static hosting, redirect to WhatsApp with order details
+    if (isStaticHost) {
+      const msg = encodeURIComponent(
+        `Hello Unifiedfarm BLM!\n\nI'd like to place an order:\nProduct: ${orderProduct}\nQuantity: ${orderForm.quantity}\nName: ${orderForm.customerName}\nEmail: ${orderForm.customerEmail}${orderForm.customerPhone ? `\nPhone: ${orderForm.customerPhone}` : ''}${orderForm.notes ? `\nNotes: ${orderForm.notes}` : ''}`
+      )
+      toast.success('Opening WhatsApp with your order details...')
+      window.open(`https://wa.me/256708813419?text=${msg}`, '_blank')
+      setOrderProduct(null)
+      setOrderForm({ customerName: '', customerEmail: '', customerPhone: '', quantity: 1, notes: '' })
+      return
+    }
+
+    // Backend available — use tRPC mutation
     createOrder.mutate({
       ...orderForm,
       product: orderProduct,
@@ -149,7 +169,7 @@ export default function Products() {
                 <textarea rows={3} value={orderForm.notes} onChange={(e) => setOrderForm({ ...orderForm, notes: e.target.value })} className="w-full px-4 py-3 rounded-xl font-serif text-sm outline-none resize-none" style={{ background: 'var(--surface)', color: 'var(--text-main)' }} placeholder="Any special requests..." />
               </div>
               <button type="submit" disabled={createOrder.isPending} className="btn-primary w-full">
-                {createOrder.isPending ? 'Submitting...' : 'Submit Order'}
+                {createOrder.isPending ? 'Submitting...' : (isStaticHost ? 'Submit Order via WhatsApp' : 'Submit Order')}
               </button>
               <a href="https://wa.me/256708813419" target="_blank" rel="noopener noreferrer" className="btn-secondary w-full gap-2 flex items-center justify-center">
                 <Phone className="w-4 h-4" />
