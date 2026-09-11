@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.unifiedfarmblm.farmmerge'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.unifiedfarmblm.farmmerge'
+        minSdk 23
+        targetSdk 36
+        versionCode 3
+        versionName '1.1.0'
+
+        buildConfigField 'String', 'BANNER_AD_UNIT_ID', '"ca-app-pub-6880789718761474/5813230302"'
+        buildConfigField 'String', 'INTERSTITIAL_AD_UNIT_ID', '"ca-app-pub-6880789718761474/7453615038"'
+        buildConfigField 'String', 'REWARDED_AD_UNIT_ID', '"ca-app-pub-6880789718761474/1873985294"'
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField 'String', 'BANNER_AD_UNIT_ID', '"ca-app-pub-3940256099942544/6300978111"'
+            buildConfigField 'String', 'INTERSTITIAL_AD_UNIT_ID', '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField 'String', 'REWARDED_AD_UNIT_ID', '"ca-app-pub-3940256099942544/5224354917"'
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation 'com.google.android.gms:play-services-ads:25.4.0'
+    implementation 'com.google.android.ump:user-messaging-platform:4.0.0'
+    implementation 'com.android.billingclient:billing:9.1.0'
+}
