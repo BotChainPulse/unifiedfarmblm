@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Farm Merge: 2048 Puzzle</string>
+    <string name="play">Play</string>
+    <string name="new_game">New game</string>
+    <string name="how_to_play">How to play</string>
+    <string name="privacy_choices">Privacy choices</string>
+    <string name="premium">Remove ads — Premium</string>
+    <string name="premium_active">Premium active — ads removed</string>
+    <string name="continue_game">Continue</string>
+    <string name="continue_with_ad">Watch ad to continue</string>
+    <string name="score_format">Score: %1$d</string>
+    <string name="best_format">Best: %1$d</string>
+    <string name="privacy_note">Farm Merge uses Google Mobile Ads for advertising and Google Play Billing for the optional Remove Ads purchase. The game itself does not require an account and stores game progress on this device.</string>
+</resources>
