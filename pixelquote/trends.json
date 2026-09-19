@@ -1,0 +1,22 @@
+{
+  "label": "Seasonal theme boosts • Sep 2026",
+  "updatedAt": 1790294400000,
+  "categoryBoosts": {
+    "Focus": 1.4,
+    "Confidence": 1.3,
+    "Motivation": 1.2,
+    "Success": 0.9,
+    "Business": 0.6,
+    "Healing": 0.5
+  },
+  "keywordBoosts": {
+    "focus": 1.0,
+    "progress": 0.9,
+    "discipline": 0.9,
+    "confidence": 0.8,
+    "learning": 0.7,
+    "work": 0.6,
+    "goals": 0.6,
+    "resilience": 0.5
+  }
+}
